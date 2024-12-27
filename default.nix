@@ -1,7 +1,7 @@
 { lib, swift, swiftpm, swiftPackages, apple-sdk_13, ... }:
 
-swiftPackages.stdenv.mkDerivation {
-  pname = "hello";
+swiftPackages.stdenv.mkDerivation rec {
+  pname = "nix-swiftui";
   version = "1.0.0";
 
   src = ./.;
@@ -20,7 +20,7 @@ swiftPackages.stdenv.mkDerivation {
     binPath="$(swiftpmBinPath)"
     # Now perform any installation steps.
     mkdir -p $out/bin
-    cp $binPath/hello $out/bin/
+    cp $binPath/${pname} $out/bin/
   '';
 
   # Allegedly this should work when XCTest is in buildInputs, but it doesn't
