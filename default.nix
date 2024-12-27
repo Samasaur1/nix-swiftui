@@ -1,9 +1,4 @@
-{ lib, swift, swiftpm, swiftpm2nix, swiftPackages, ... }:
-
-let
-  # Pass the generated files to the helper.
-  generated = swiftpm2nix.helpers ./nix;
-in
+{ lib, swift, swiftpm, swiftPackages, apple-sdk_13, ... }:
 
 swiftPackages.stdenv.mkDerivation {
   pname = "hello";
@@ -16,9 +11,8 @@ swiftPackages.stdenv.mkDerivation {
   #   swift build -c release
   nativeBuildInputs = [ swift swiftpm ];
 
-  # The helper provides a configure snippet that will prepare all dependencies
-  # in the correct place, where SwiftPM expects them.
-  configurePhase = generated.configure;
+  # This might not be necessary
+  buildInputs = [ apple-sdk_13 ];
 
   installPhase = ''
     # This is a special function that invokes swiftpm to find the location
