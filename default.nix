@@ -1,6 +1,6 @@
-{ lib, swift, swiftpm, swiftPackages, apple-sdk_13, ... }:
+{ lib, swift, swiftpm, stdenv, apple-sdk_13, ... }:
 
-swiftPackages.stdenv.mkDerivation rec {
+stdenv.mkDerivation rec {
   pname = "nix-swiftui";
   version = "1.0.0";
 
